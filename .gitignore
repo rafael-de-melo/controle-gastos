@@ -1,0 +1,51 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+
+# VS / VSCode
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# .NET / C#
+bin/
+obj/
+TestResults/
+*.nupkg
+*.snupkg
+project.lock.json
+*.dbmdl
+*.jfm
+*.pfx
+*.publishsettings
+
+# Rider / ReSharper
+.idea/
+_ReSharper*/
+*.DotSettings.user
+
+# Node / React
+node_modules/
+dist/
+build/
+.vite/
+coverage/
+*.log
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
