@@ -20,7 +20,7 @@ public class Transacao
     public int CategoriaId { get; set; }
     public Categoria Categoria { get; set; } = null!;
 
-    private Transacao() { }
+    public Transacao() { }
 
     public Transacao(
         string descricao,

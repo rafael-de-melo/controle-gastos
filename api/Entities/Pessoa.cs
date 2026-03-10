@@ -10,7 +10,7 @@ public class Pessoa
 
     public List<Transacao> Transacoes { get; set; } = new();
 
-    private Pessoa() { }
+    public Pessoa() { }
 
     public Pessoa(string nome, int idade)
     {

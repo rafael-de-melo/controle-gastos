@@ -12,7 +12,7 @@ public class Categoria
 
     public List<Transacao> Transacoes { get; set; } = new();
 
-    private Categoria() { }
+    public Categoria() { }
 
     public Categoria(string descricao, FinalidadeCategoria finalidade)
     {
