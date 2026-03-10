@@ -86,6 +86,7 @@
   border: 1px solid #e5e7eb;
   border-radius: 14px;
   overflow: hidden;
+  min-height: 90%;
 }
 
 .transactions-table {
@@ -135,4 +136,75 @@
 
 .table-feedback--error {
   color: #b91c1c;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field--full {
+  grid-column: 1 / -1;
+}
+
+.form-field input,
+.form-field select {
+  height: 42px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0 12px;
+  font: inherit;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.form-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #b91c1c;
+}
+
+.row-actions {
+  position: relative;
+  display: inline-flex;
+}
+
+.actions-menu {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  min-width: 120px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 6px;
+  z-index: 20;
+}
+
+.actions-menu__item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.actions-menu__item:hover {
+  background: #f3f4f6;
 }

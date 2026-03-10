@@ -1,31 +1,47 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { listarTransacoes } from './services/transacoes.service';
+import { listarTransacoes, removerTransacao } from './services/transacoes.service';
 import type { Transacao } from './interfaces/transacao';
 import { formatarData, formatarTipo, formatarValor } from './utils/transacoes';
+import { NovaTransacaoModal } from './components/transacoes/novaTransacaoModal';
 
 function App() {
   const [transacoes, setTransacoes] = useState<Transacao[]>([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState('');
+  const [modalNovaTransacaoAberto, setModalNovaTransacaoAberto] = useState(false);
+  const [transacaoMenuAbertoId, setTransacaoMenuAbertoId] = useState<number | null>(null);
+
+  async function carregarTransacoes() {
+    try {
+      setCarregando(true);
+      setErro('');
+      const dados = await listarTransacoes();
+      setTransacoes(dados);
+    } catch {
+      setErro('Não foi possível carregar as transações.');
+    } finally {
+      setCarregando(false);
+    }
+  }
 
   useEffect(() => {
-    async function carregarTransacoes() {
-      try {
-        setCarregando(true);
-        setErro('');
-
-        const dados = await listarTransacoes();
-        setTransacoes(dados);
-      } catch {
-        setErro('Não foi possível carregar as transações.');
-      } finally {
-        setCarregando(false);
-      }
-    }
-
     carregarTransacoes();
   }, []);
+
+  async function handleExcluirTransacao(id: number) {
+    try {
+      await removerTransacao(id);
+      setTransacaoMenuAbertoId(null);
+      await carregarTransacoes();
+    } catch {
+      setErro('Não foi possível excluir a transação.');
+    }
+  }
+
+  async function handleTransacaoCriada() {
+    await carregarTransacoes();
+  }
 
   return (
     <main className="app">
@@ -51,12 +67,13 @@ function App() {
         <div className="app__content-header">
           <div>
             <h2 className="app__section-title">Últimas transações</h2>
-            <p className="app__section-subtitle">
-              Visualização inicial da home da aplicação.
-            </p>
           </div>
 
-          <button className="app__primary-button" type="button">
+          <button
+            className="app__primary-button"
+            type="button"
+            onClick={() => setModalNovaTransacaoAberto(true)}
+          >
             Nova transação
           </button>
         </div>
@@ -98,9 +115,31 @@ function App() {
                     <td>{transacao.nomePessoa}</td>
                     <td>{transacao.descricaoCategoria}</td>
                     <td className="actions-cell">
-                      <button className="icon-button" type="button">
-                        ⋯
-                      </button>
+                      <div className="row-actions">
+                        <button
+                          className="icon-button"
+                          type="button"
+                          onClick={() =>
+                            setTransacaoMenuAbertoId((atual) =>
+                              atual === transacao.id ? null : transacao.id
+                            )
+                          }
+                        >
+                          ⋯
+                        </button>
+
+                        {transacaoMenuAbertoId === transacao.id && (
+                          <div className="actions-menu">
+                            <button
+                              type="button"
+                              className="actions-menu__item"
+                              onClick={() => handleExcluirTransacao(transacao.id)}
+                            >
+                              Excluir
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -109,6 +148,12 @@ function App() {
           )}
         </div>
       </section>
+
+      <NovaTransacaoModal
+        aberto={modalNovaTransacaoAberto}
+        onFechar={() => setModalNovaTransacaoAberto(false)}
+        onCriada={handleTransacaoCriada}
+      />
     </main>
   );
 }
