@@ -58,7 +58,9 @@ public class TransacaoService : ITransacaoService
                 Data = t.Data,
                 Tipo = t.Tipo,
                 PessoaId = t.PessoaId,
-                CategoriaId = t.CategoriaId
+                CategoriaId = t.CategoriaId,
+                NomePessoa = t.Pessoa.Nome,
+                DescricaoCategoria = t.Categoria.Descricao
             })
             .ToListAsync();
     }

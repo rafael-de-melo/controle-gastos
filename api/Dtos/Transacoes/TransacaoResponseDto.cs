@@ -12,4 +12,6 @@ public class TransacaoResponseDto
 
     public int PessoaId { get; set; }
     public int CategoriaId { get; set; }
+    public string NomePessoa { get; set; } = string.Empty;
+    public string DescricaoCategoria { get; set; } = string.Empty;
 }
