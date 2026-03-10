@@ -62,6 +62,7 @@ public class TransacaoService : ITransacaoService
                 NomePessoa = t.Pessoa.Nome,
                 DescricaoCategoria = t.Categoria.Descricao
             })
+            .OrderByDescending(e => e.Data)
             .ToListAsync();
     }
 
