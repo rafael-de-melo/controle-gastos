@@ -5,4 +5,5 @@ namespace api.Services.Interfaces;
 public interface IRelatorioService
 {
     Task<TotaisPorPessoaResponseDto> ObterTotaisPorPessoaAsync();
+    Task<TotaisPorCategoriaResponseDto> ObterTotaisPorCategoriaAsync();
 }
