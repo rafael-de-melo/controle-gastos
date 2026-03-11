@@ -4,6 +4,9 @@ import { listarTransacoes, removerTransacao } from './services/transacoes.servic
 import type { Transacao } from './interfaces/transacao';
 import { formatarData, formatarTipo, formatarValor } from './utils/transacoes';
 import { NovaTransacaoModal } from './components/transacoes/novaTransacaoModal';
+import { PessoasModal } from './components/pessoas/pessoasModal';
+import { CategoriasModal } from './components/categorias/categoriasModal';
+import { RelatoriosModal } from './components/categorias/relatoriosModal';
 
 function App() {
   const [transacoes, setTransacoes] = useState<Transacao[]>([]);
@@ -11,6 +14,9 @@ function App() {
   const [erro, setErro] = useState('');
   const [modalNovaTransacaoAberto, setModalNovaTransacaoAberto] = useState(false);
   const [transacaoMenuAbertoId, setTransacaoMenuAbertoId] = useState<number | null>(null);
+  const [modalPessoasAberto, setModalPessoasAberto] = useState(false);
+  const [modalCategoriasAberto, setModalCategoriasAberto] = useState(false);
+  const [modalRelatoriosAberto, setModalRelatoriosAberto] = useState(false);
 
   async function carregarTransacoes() {
     try {
@@ -49,15 +55,15 @@ function App() {
         <h1 className="app__title">Controle de Gastos</h1>
 
         <div className="app__actions">
-          <button className="app__button" type="button">
+          <button className="app__button" type="button" onClick={() => setModalPessoasAberto(true)}>
             Pessoas
           </button>
 
-          <button className="app__button" type="button">
+          <button className="app__button" type="button" onClick={() => setModalCategoriasAberto(true)}>
             Categorias
           </button>
 
-          <button className="app__button" type="button">
+          <button className="app__button" type="button" onClick={() => setModalRelatoriosAberto(true)}>
             Relatório
           </button>
         </div>
@@ -153,6 +159,21 @@ function App() {
         aberto={modalNovaTransacaoAberto}
         onFechar={() => setModalNovaTransacaoAberto(false)}
         onCriada={handleTransacaoCriada}
+      />
+
+      <PessoasModal
+        aberto={modalPessoasAberto}
+        onFechar={() => setModalPessoasAberto(false)}
+      />
+
+      <CategoriasModal
+        aberto={modalCategoriasAberto}
+        onFechar={() => setModalCategoriasAberto(false)}
+      />
+
+      <RelatoriosModal
+        aberto={modalRelatoriosAberto}
+        onFechar={() => setModalRelatoriosAberto(false)}
       />
     </main>
   );

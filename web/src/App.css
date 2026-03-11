@@ -2,19 +2,21 @@
   min-height: 100vh;
   display: grid;
   grid-template-columns: 240px 1fr;
-  background: #f5f7fb;
+  background: #0b0b0c;
+  color: #f5f5f5;
 }
 
 .app__sidebar {
   padding: 24px;
-  border-right: 1px solid #e5e7eb;
-  background: #ffffff;
+  border-right: 1px solid #2a2a2e;
+  background: #111214;
 }
 
 .app__title {
   margin: 0 0 24px;
   font-size: 1.5rem;
   line-height: 1.2;
+  color: #ffd54a;
 }
 
 .app__actions {
@@ -26,12 +28,12 @@
 .app__button,
 .app__primary-button,
 .icon-button {
-  border: 1px solid #d1d5db;
-  background: #ffffff;
-  color: #111827;
+  border: 1px solid #3a3a40;
+  background: #18191c;
+  color: #f5f5f5;
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .app__button {
@@ -41,9 +43,10 @@
 }
 
 .app__button:hover,
-.app__primary-button:hover,
 .icon-button:hover {
-  background: #f3f4f6;
+  background: #232428;
+  border-color: #ffd54a;
+  color: #ffd54a;
 }
 
 .app__content {
@@ -61,29 +64,32 @@
 .app__section-title {
   margin: 0;
   font-size: 1.4rem;
+  color: #ffffff;
 }
 
 .app__section-subtitle {
   margin: 6px 0 0;
-  color: #6b7280;
+  color: #b7b7bd;
   font-size: 0.95rem;
 }
 
 .app__primary-button {
   padding: 12px 16px;
   font-weight: 600;
-  background: #111827;
-  color: #ffffff;
-  border-color: #111827;
+  background: #ffd54a;
+  color: #111214;
+  border-color: #ffd54a;
 }
 
 .app__primary-button:hover {
-  background: #1f2937;
+  background: #ffca1a;
+  border-color: #ffca1a;
+  color: #0b0b0c;
 }
 
 .table-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: #141518;
+  border: 1px solid #2a2a2e;
   border-radius: 14px;
   overflow: hidden;
   min-height: 90%;
@@ -98,18 +104,19 @@
 .transactions-table td {
   padding: 14px 16px;
   text-align: left;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #2a2a2e;
 }
 
 .transactions-table th {
-  background: #f9fafb;
+  background: #1a1b1f;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #374151;
+  color: #ffd54a;
 }
 
 .transactions-table td {
   font-size: 0.95rem;
+  color: #f1f1f1;
 }
 
 .actions-cell {
@@ -124,18 +131,22 @@
   line-height: 1;
 }
 
+.transactions-table tbody tr:hover td {
+  background: #1a1b1f;
+}
+
 .transactions-table tbody tr:last-child td {
   border-bottom: none;
 }
 
 .table-feedback {
   padding: 24px;
-  color: #374151;
+  color: #c9c9ce;
   font-size: 0.95rem;
 }
 
 .table-feedback--error {
-  color: #b91c1c;
+  color: #ff6b6b;
 }
 
 .form-grid {
@@ -150,6 +161,12 @@
   gap: 8px;
 }
 
+.form-field label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffd54a;
+}
+
 .form-field--full {
   grid-column: 1 / -1;
 }
@@ -157,10 +174,19 @@
 .form-field input,
 .form-field select {
   height: 42px;
-  border: 1px solid #d1d5db;
+  border: 1px solid #3a3a40;
   border-radius: 10px;
   padding: 0 12px;
   font: inherit;
+  background: #18191c;
+  color: #f5f5f5;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: #ffd54a;
+  box-shadow: 0 0 0 3px rgba(255, 213, 74, 0.18);
 }
 
 .form-actions {
@@ -173,7 +199,7 @@
 .form-error {
   grid-column: 1 / -1;
   margin: 0;
-  color: #b91c1c;
+  color: #ff6b6b;
 }
 
 .row-actions {
@@ -186,10 +212,10 @@
   top: 42px;
   right: 0;
   min-width: 120px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: #18191c;
+  border: 1px solid #2a2a2e;
   border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
   padding: 6px;
   z-index: 20;
 }
@@ -203,8 +229,63 @@
   border-radius: 8px;
   cursor: pointer;
   font: inherit;
+  color: #f5f5f5;
 }
 
 .actions-menu__item:hover {
-  background: #f3f4f6;
+  background: #232428;
+  color: #ffd54a;
+}
+
+.modal-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.modal-section-title {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.modal-section-subtitle {
+  margin: 6px 0 0;
+  color: #b7b7bd;
+  font-size: 0.95rem;
+}
+
+.report-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.report-tab {
+  border: 1px solid #3a3a40;
+  background: #18191c;
+  color: #f5f5f5;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.report-tab:hover {
+  background: #232428;
+  border-color: #ffd54a;
+  color: #ffd54a;
+}
+
+.report-tab--active {
+  background: #ffd54a;
+  color: #111214;
+  border-color: #ffd54a;
+}
+
+.report-total-row td {
+  background: #1a1b1f;
+  color: #ffd54a;
 }
